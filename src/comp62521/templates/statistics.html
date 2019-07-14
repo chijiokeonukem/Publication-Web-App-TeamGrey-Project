@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<!-- You are component -->
+
+
+
+<!-- learn more component -->
+<div class="jumbotron" style = "height:100px; padding-top: 0px; padding-bottom: 0px">
+  <h1 style="text-align:left; border-bottom:2px solid #ccc">Research Collaborations</h1>
+  <h4 style="text-align:left">Place cursor on any image below to explore this site</h4>
+</div>
+
+
+<div class='tetrades' style="padding-left:5px;">
+
+  <div class="row">
+    <div class="column" style="">
+      <div class="headt">Publication</div>
+      <div class="flip-box">
+      <div class="flip-box-inner">
+        <div class="flip-box-front" style="background-color: #802b00;">
+          <img class='image_size' src="{{ url_for('static', filename = 'pub.jpg') }}"/>
+        </div>
+        <div class="flip-box-back">
+          <a href="/statisticsdetails/publication_summary"><div class="clk"><h4>Table for Publications Summary</h4></div></a>
+          <a href="/statisticsdetails/publication_author"><div class="clk"><h4>Table for Publications by Author</h4></div></a>
+          <a href="/statisticsdetails/publication_year"><div class="clk"><h4>Table for Publication by Year</h4></div></a>
+          <a href="/averages"><div class="clk"><h4>Tables for Average Data per category</h4></div></a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="column">
+      <div class="headt">Author</div>
+      <div class="flip-box">
+      <div class="flip-box-inner">
+        <div class="flip-box-front" style="background-color: #802b00;">
+          <img class='image_size' src="{{ url_for('static', filename = 'author.jpg') }}"/>
+        </div>
+        <div class="flip-box-back">
+          <a href="/statisticsdetails/author_year"><div class="clk"><h4>Table for Authors per Year</h4></div></a>
+          <a href="/coauthors"><div class="clk"><h4>List of Author and Co-Authors</h4></div></a>
+          <a href="/authordetails"><div class="clk"><h4>Table for Authors' Publications by Type</h4></div></a>
+          <a href="/stats"><div class="clk"><h4>Table for Authors' first,last and sole publications</h4></div></a>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="column">
+      <div class="headt">Search</div>
+      <div class="flip-box">
+      <div class="flip-box-inner">
+        <div class="flip-box-front" style="background-color: #802b00;">
+          <img class='image_size' src="{{ url_for('static', filename = 'search.jpg') }}"/>
+        </div>
+        <div class="flip-box-back">
+          <a href="/searchAuthor"><div class="clk"><h4>Search for author by name</h4></div></a>
+          <a href="/searchPartName?first=1"><div class="clk"><h4>Search for authors by part name</h4></div></a>
+          <a href="/degrees"><div class="clk"><h4>Find Degree of Seperation between authors</h4></div></a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+  <style type="text/css">
+
+    .column {
+        float: left;
+        width: 33.33%;
+
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+
+    }
+
+    /* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+    .flip-box {
+      background-color: transparent;
+      width: 300px;
+      height: 270px;
+      border: 1px solid #f1f1f1;
+      perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    }
+
+    /* This container is needed to position the front and back side */
+    .flip-box-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    /* Do an horizontal flip when you move the mouse over the flip box container */
+    .flip-box:hover .flip-box-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Position the front and back side */
+    .flip-box-front, .flip-box-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    /* Style the front side */
+    .flip-box-front {
+      background-color: #bbb;
+      color: black;
+    }
+
+    /* Style the back side */
+    .flip-box-back {
+      background-color: #282828;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+
+    .flip-box:hover .flip-box-inner {
+      transform: rotateX(180deg);
+    }
+
+    .flip-box-back {
+      transform: rotateX(180deg);
+    }
+    img {
+    	max-width: 100%;
+    	height: 100%;
+    	width: auto\9; /* ie8 */
+    }
+
+    .portrait {
+        height: 80px;
+        width: 30px;
+    }
+
+    .landscape {
+        height: 30px;
+        width: 80px;
+    }
+
+    .square {
+        height: 75px;
+        width: 75px;
+    }
+    .headt{
+      padding: 1px;
+      background-color: #ccc;
+      font-size: 20px;
+    }
+    .clk{
+      padding-top: 1px;
+      padding-bottom: 1px;
+    }
+    .clk:hover{
+      background-color: #F5F5F5;;
+      color: black;
+    }
+    a{
+      text-decoration: none;
+      color: #fff;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+
+  </style>
+
+
+
+
+
+
+
+</div>
+
+<script>
+  function myFunction1() {
+    //document.getElementById("myDropdown1").classList.toggle("show");
+    document.getElementById("myDropdown1").style.display="block";
+    document.getElementById("myDropdown2").style.display="none";
+    document.getElementById("myDropdown3").style.display="none";
+    document.getElementById("myDropdown4").style.display="none";
+}
+
+  function myFunction2() {
+    //document.getElementById("myDropdown2").classList.toggle("show");
+    document.getElementById("myDropdown2").style.display="block";
+    document.getElementById("myDropdown1").style.display="none";
+    document.getElementById("myDropdown3").style.display="none";
+    document.getElementById("myDropdown4").style.display="none";
+}
+
+  function myFunction3() {
+    //document.getElementById("myDropdown3").classList.toggle("show");
+    document.getElementById("myDropdown3").style.display="block";
+    document.getElementById("myDropdown2").style.display="none";
+    document.getElementById("myDropdown1").style.display="none";
+    document.getElementById("myDropdown4").style.display="none";
+}
+
+  function myFunction4() {
+    //document.getElementById("myDropdown4").classList.toggle("show");
+    document.getElementById("myDropdown4").style.display="block";
+    document.getElementById("myDropdown2").style.display="none";
+    document.getElementById("myDropdown3").style.display="none";
+    document.getElementById("myDropdown1").style.display="none";
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    document.getElementById("myDropdown4").style.display="none";
+    document.getElementById("myDropdown2").style.display="none";
+    document.getElementById("myDropdown3").style.display="none";
+    document.getElementById("myDropdown1").style.display="none";
+
+  }
+};
+
+</script>
+
+{% endblock %}

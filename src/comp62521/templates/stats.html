@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
+
+<h1>Authors' first, last and sole publications</h1>
+
+    <table>
+  <thead>
+    <tr>
+    {% set i=0 %}
+    {% for column in args.data[0] %}
+      <th><center><a href="/stats?col={{i}}&table={{j}}"> {{ column }}</a></center></th>
+        {% set i=i+1 %}
+    {% endfor %}
+    </tr>
+  </thead>
+
+  <tbody>
+  {% for row in args.data[1] %}
+    <tr>
+    {% for data_item in row %}
+    {% if row[0]==data_item and args.title == "Author Publication"%}
+            <td><center></center></td>
+         {% else %}
+            <td><center>{{ data_item }}</center></td>
+         {% endif %}
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+
+
+<script>
+function validateForm(form){
+  author = form["author"].value;
+
+  if (author == ""){
+    alert("Please provide an Author");
+    return false;
+  }
+  return true;
+}
+</script>
+{% endblock %}

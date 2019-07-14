@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
+
+<h1>{{ args.title }}</h1>
+
+<form action="/searchPartName" method="get" data-ajax="false" onSubmit="validateForm(this)">
+	Author Name:<br>
+	<input type="text" name="author">
+	<input type="submit" value="Submit">
+  <br>
+  <h4>Type an author's name to receive link to his/hers statistics</h4>
+  <br>
+   {% if args.first!="1" and args.flag_none == "0" %}
+     <table>
+      <thead>
+        
+          <tr>
+            <th><h1><center>Choose from:</center></h1></th>
+          </tr>
+        
+
+        {% for x in args.part_name %}
+        <tr>
+          <td>
+            <!--center-->
+               <a href="/StatsForAuthor?author={{x}}">Stats for {{x}}</a>
+            <!--/center-->
+          </td>
+        </tr>
+        {% endfor %}
+
+      </thead>
+    </table>
+   {% elif args.flag_none == "1" %}
+	<h3><center>No author name match found for this part of name!<br>Please provide a new one.</center></h3>
+   {% endif %}
+   {% if args.onlyOne=="1" %}
+	<meta http-equiv="refresh" content="0.000; url=/StatsForAuthor?author={{args.authors}}">
+   {% endif %}
+
+  </form>
+
+
+  
+<script>
+function validateForm(form){
+  author = form["author"].value;
+  
+  if (author == ""){
+    alert("Please provide part name of the Author");
+    return false;
+  }
+  return true;
+}
+</script>
+{% endblock %}

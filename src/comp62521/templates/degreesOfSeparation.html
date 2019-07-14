@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ args.title }}{% endblock %}
+{% block content %}
+<h1>{{ args.title }}</h1>
+
+<h3>Choose 2 authors to find their degree of separation</h3>
+
+<form name="input" action="/degrees" method="get" data-ajax="false" onSubmit="validateForm(this)">
+
+<SELECT NAME="author#1">
+	{% for author in args.authors %}
+ 		<OPTION VALUE="{{ author }}" ">{{author}}</OPTION>
+	{% endfor %}
+</SELECT>
+
+  <br><br>
+
+ <SELECT NAME="author#2">
+	{% for author in args.authors %}
+ 		<OPTION VALUE="{{ author }}" >{{author}}</OPTION>
+	{% endfor %}
+</SELECT>
+<br><br> 
+  <input type="submit">
+<br>
+<br>
+
+</form>
+</br>
+{% if args.author1 != "None" and args.author2 != "None" and args.degree != -1 %}
+<h4> The degrees of separation between {{args.author1}} and {{args.author2}} is {{args.degree}} </h4>
+
+{% endif %}
+
+<script>
+function validateForm(form){
+  author1 = form["author#1"].value;
+  author2 = form["author#2"].value;
+  if (author1 == author2){
+    alert("Please choose different authors");
+    return false
+  }
+  return true;
+}
+</script>
+{% endblock %}
